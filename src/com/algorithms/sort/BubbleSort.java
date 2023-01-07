@@ -12,9 +12,10 @@ public class BubbleSort<T extends Comparable<T>> {
         int length = arr.length;
         while (swapped) {
             swapped = false;
-            for (int i = 1; i < length; i++) {
-                if (arr[i].compareTo(arr[i - 1]) < 0) {
-                    swap(i, i - 1, arr);
+            for (int i = 0; i < length - 1; i++) {
+                // if arr[i] > arr[i + 1]
+                if (arr[i].compareTo(arr[i + 1]) > 0) {
+                    swap(i, i + 1, arr);
                     swapped = true;
                 }
             }
