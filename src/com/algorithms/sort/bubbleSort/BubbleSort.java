@@ -1,4 +1,4 @@
-package com.algorithms.sort;
+package com.algorithms.sort.bubbleSort;
 
 // Algorithm is type generic
 // Doesn't work for native types like int, double
