@@ -14,10 +14,12 @@ public class AnagramChecker {
         Map<String, Integer> myMap = new HashMap<String, Integer>();
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) != ' ') {
-                if (myMap.containsKey( Character.toString(str.charAt(i)) )) {
-                    myMap.put(Character.toString(str.charAt(i)), myMap.get( Character.toString(str.charAt(i)) ) + 1);
+                String character = Character.toString(str.charAt(i));
+                if (myMap.containsKey(character)) {
+                    int numberOfOccurences = myMap.get(character);
+                    myMap.put(character, numberOfOccurences + 1);
                 } else {
-                    myMap.put(Character.toString(str.charAt(i)), 1);
+                    myMap.put(character, 1);
                 }
             }
         }
