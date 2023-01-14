@@ -1,4 +1,4 @@
-package com.algorithms;
+package com.algorithms.sum1ToN;
 
 public class Sum1ToN {
     public static int sum(int n) {

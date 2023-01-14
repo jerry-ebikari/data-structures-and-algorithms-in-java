@@ -1,4 +1,4 @@
-package com.algorithms;
+package com.algorithms.anagramChecker;
 
 import java.util.HashMap;
 import java.util.Map;
