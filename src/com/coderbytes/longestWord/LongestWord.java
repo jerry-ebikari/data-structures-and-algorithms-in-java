@@ -2,18 +2,19 @@ package com.coderbytes.longestWord;
 
 public class LongestWord {
     public static String longestWord(String sen) {
-        String[] arr = sen.split(" ");
+        String[] wordsWithPunctuation = sen.split(" ");
+        // remove punctuation
         sen = sen.replaceAll("[^a-z^ ]", "");
-        String[] arr1 = sen.split(" ");
+        String[] wordsWithoutPunctuation = sen.split(" ");
         int longestIndex = 0;
-        int longest = arr1[0].length();
-        for (int i = 1; i < arr1.length; i++) {
-            if (arr1[i].length() > longest) {
-                longest = arr[i].length();
+        int longest = wordsWithoutPunctuation[0].length();
+        for (int i = 1; i < wordsWithoutPunctuation.length; i++) {
+            if (wordsWithoutPunctuation[i].length() > longest) {
+                longest = wordsWithoutPunctuation[i].length();
                 longestIndex = i;
             }
         }
-        return arr[longestIndex];
+        return wordsWithPunctuation[longestIndex];
     }
 
     public static void main(String[] args) {
