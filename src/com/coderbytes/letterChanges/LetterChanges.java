@@ -1,7 +1,5 @@
 package com.coderbytes.letterChanges;
 
-import java.util.Arrays;
-
 public class LetterChanges {
     public static String letterChanges(String str) {
         StringBuilder sb = new StringBuilder(str.length());
