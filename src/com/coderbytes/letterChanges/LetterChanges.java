@@ -5,24 +5,10 @@ public class LetterChanges {
         StringBuilder sb = new StringBuilder(str.length());
         str = str.toLowerCase();
         char[] charArray = str.toCharArray();
-        String vowels = "aeiou";
         for (char character: charArray) {
             if (Character.isLetter(character)) {
-                if (character != 'z') {
-                    char nextCharacter = (char)(character + 1);
-                    if (vowels.contains(nextCharacter + "")) {
-                        char c = Character.toUpperCase(nextCharacter);
-                        sb.append(c);
-                    }
-                    else {
-                        sb.append(nextCharacter);
-                    }
-                }
-                else {
-                    sb.append('A');
-                }
+                sb.append(encode(character));
             }
-            // if character is not a letter
             else {
                 sb.append(character);
             }
@@ -30,9 +16,30 @@ public class LetterChanges {
         return sb.toString();
     }
 
+    public static char encode(char letter) {
+        // if character is not z
+        if (letter != 'z') {
+            String vowels = "aeiou";
+            char nextCharacter = (char)(letter + 1);
+            // if next character is a vowel
+            if (vowels.contains(nextCharacter + "")) {
+                char c = Character.toUpperCase(nextCharacter);
+                return c;
+            }
+            // if next character is not a vowel
+            else {
+                return nextCharacter;
+            }
+        }
+        // if character is z
+        else {
+            return 'A';
+        }
+    }
+
     public static void main(String[] args) {
       System.out.println(letterChanges("hello*3"));
       System.out.println(letterChanges("fun times!"));
-      System.out.println(letterChanges("abcdefghijklmnopqrstuvwxyz"));
+      System.out.println(letterChanges("a b c d e f g h i j k l m n o p q r s t u v w x y z"));
     }
 }
