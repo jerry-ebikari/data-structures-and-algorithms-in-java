@@ -2,17 +2,17 @@ package com.coderbytes.exOh;
 
 public class ExOh {
     public static String exOh(String str) {
-        if (str.length() < 2) return "false";
         int strLength = str.length();
+        if (strLength < 2 || strLength % 2 == 1) return "false";
         int numberOfXes = strLength - str.replaceAll("[xX]", "").length();
         int numberOfOs = strLength - str.replaceAll("[oO]", "").length();
         return numberOfOs == numberOfXes ? "true" : "false";
     }
 
     public static String exOh2(String str) {
-        if (str.length() < 2) return "false";
-        int numberOfOs = 0;
         int strLength = str.length();
+        if (strLength < 2 || strLength % 2 == 1) return "false";
+        int numberOfOs = 0;
         for (int i = 0; i < strLength; i++) {
             if ("oO".contains((str.charAt(i) + ""))) {
                 numberOfOs++;
