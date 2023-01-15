@@ -8,6 +8,17 @@ public class ExOh {
         return numberOfOs == numberOfXes ? "true" : "false";
     }
 
+    public static String exOh2(String str) {
+        int numberOfOs = 0;
+        int strLength = str.length();
+        for (int i = 0; i < strLength; i++) {
+            if ("oO".contains((str.charAt(i) + ""))) {
+                numberOfOs++;
+            }
+        }
+        return strLength - numberOfOs == numberOfOs ? "true" : "false";
+    }
+
     public static void main(String[] args) {
         System.out.println(exOh("xooxxo"));
         System.out.println(exOh("x"));
