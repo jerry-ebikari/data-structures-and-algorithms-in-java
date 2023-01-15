@@ -5,6 +5,7 @@
 ```java
 Input: 3 & num2 = 122
 Output: true
+
 Input: 67 & num2 = 67
 Output: -1
 ```

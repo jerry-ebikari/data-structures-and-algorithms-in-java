@@ -5,6 +5,7 @@
 ```java
 Input: 126
 Output: 2:6
+
 Input: 45
 Output: 0:45
 ```
