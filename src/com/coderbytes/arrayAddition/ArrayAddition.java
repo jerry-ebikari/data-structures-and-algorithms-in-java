@@ -8,11 +8,16 @@ public class ArrayAddition {
         Arrays.sort(arr);
         int arrLength = arr.length;
         int largest = arr[arrLength - 1];
-        int sum = 0;
-        return "";
+        ArrayList<int[]> combinations = getCombinations(Arrays.copyOfRange(arr, 0, arrLength - 1));
+        for (int[] element: combinations) {
+            if (sumArr(element) == largest) {
+                return "true";
+            }
+        }
+        return "false";
     }
 
-    public static ArrayList<int[]> combinations(int[] arr) {
+    public static ArrayList<int[]> getCombinations(int[] arr) {
         if (arr.length == 0) {
             int[] arr1 = {};
             ArrayList<int[]> result = new ArrayList<int[]>();
@@ -21,7 +26,7 @@ public class ArrayAddition {
         }
         int first = arr[0];
         int[] rest = Arrays.copyOfRange(arr, 1, arr.length);
-        ArrayList<int[]> combinationsWithoutFirst = combinations(rest);
+        ArrayList<int[]> combinationsWithoutFirst = getCombinations(rest);
         ArrayList<int[]> combinationsWithFirst = new ArrayList<int[]>();
         for (int i = 0; i < combinationsWithoutFirst.size(); i++) {
             int[] element = combinationsWithoutFirst.get(i);
@@ -37,19 +42,6 @@ public class ArrayAddition {
         return result;
     }
 
-    public static void printArrayList(ArrayList<int[]> arr) {
-        for (int[] element: arr) {
-            printArray(element);
-        }
-    }
-
-    public static void printArray(int[] arr) {
-        for (int i: arr) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-    }
-
     public static int[] addElementToArr(int[] arr, int elementToAdd) {
         int arrLength = arr.length;
         int[] newArr = new int[arrLength + 1];
@@ -63,10 +55,18 @@ public class ArrayAddition {
         return newArr;
     }
 
+    public static int sumArr(int[] arr) {
+        int sum = 0;
+        for (int i: arr) {
+            sum += i;
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         int[] arr1 = {5,7,16,1,2};
         int[] arr2 = {3,5,-1,8,12};
-        ArrayList<int[]> combination1 = combinations(arr1);
-        ArrayList<int[]> combination2 = combinations(arr2);
+        System.out.println(arrayAddition(arr1));
+        System.out.println(arrayAddition(arr2));
     }
 }
