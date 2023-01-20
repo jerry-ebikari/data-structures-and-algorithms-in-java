@@ -1,10 +1,10 @@
-package com.coderbytes.letterChanges1;
+package com.coderbytes.letterCount1;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LetterChanges1 {
-    public static String letterChanges(String str) {
+public class LetterCount1 {
+    public static String letterCount(String str) {
         if (str.length() == 0) return "-1";
         String[] originalWords = str.split(" ");
         str = str.toLowerCase();
@@ -54,9 +54,9 @@ public class LetterChanges1 {
     }
 
     public static void main(String[] args) {
-        System.out.println(letterChanges("Hello apple pie"));
-        System.out.println(letterChanges("No Words"));
-        System.out.println(letterChanges("Today, is the greatest day ever!"));
+        System.out.println(letterCount("Hello apple pie"));
+        System.out.println(letterCount("No Words"));
+        System.out.println(letterCount("Today, is the greatest day ever!"));
     }
 
     
