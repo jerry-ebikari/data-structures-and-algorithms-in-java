@@ -15,29 +15,23 @@ public class CountingMinutes1 {
         return str.charAt(length - 2) + "" + str.charAt(length - 1);
     }
 
+    public static int convertToMinutes(String str) {
+        if (getHour(str) == 12) {
+            return getMinutes(str) + ("pm".equals(getHalfOfDay(str)) ? 12 : 0) * 60;
+        }
+        if ("am".equals(getHalfOfDay(str))) {
+            return getHour(str) * 60 + getMinutes(str);
+        }
+        return (12 + getHour(str)) * 60 + getMinutes(str);
+    }
+
     public static int countingMinutes(String str) {
         String[] times = str.split("-");
         String from = times[0];
         String to = times[1];
-        // (am to am) OR (pm to pm)
-        if (getHalfOfDay(from).equals(getHalfOfDay(to))) {
-            boolean fromGreaterThanTo = (
-                getHour(from) > getHour(to) ||
-                getHour(from) == getHour(to) && getMinutes(from) > getMinutes(to)
-            );
-            int differenceInMinutes = 60 * (getHour(from) - getHour(to)) + getMinutes(from) - getMinutes(to);
-            if (fromGreaterThanTo) {
-                return (24 * 60) - differenceInMinutes;
-            }
-            else {
-                return Math.abs(differenceInMinutes);
-            }
-        }
-        // (am to pm) OR (pm to am)
-        else {
-            int differenceInMinutes = 60 * (getHour(to) - getHour(from)) + getMinutes(to) - getMinutes(from);
-            return 12 * 60 + differenceInMinutes;
-        }
+        int difference = convertToMinutes(to) - convertToMinutes(from);
+        if (difference < 0) return 24 * 60 + difference;
+        return difference;
     }
 
     public static void main(String[] args) {
