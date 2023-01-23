@@ -2,6 +2,8 @@ package com.coderbytes.powersOfTwo;
 
 public class PowersOfTwo {
     public static String powersOfTwo(int num) {
+        if (num == 1 || num < 0) return "false";
+        if (num == 0) return "true";
         while (num > 1) {
             if (num % 2 != 0) {
                 return "false";
