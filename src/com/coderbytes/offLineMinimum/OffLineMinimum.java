@@ -40,14 +40,6 @@ public class OffLineMinimum {
         allNumbers.remove(smallest);
     }
 
-
-    public static <T extends Comparable<T>> void printArr(T[] arr) {
-        for (T elem: arr) {
-            System.out.print(elem);
-        }
-        System.out.println();
-    }
-
     public static void main(String[] args) {
         String[] arr1 = {"1","2","E","E","3"};
         String[] arr2 = {"4","E","1","E","2","E","3","E"};
