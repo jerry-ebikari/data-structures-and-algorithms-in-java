@@ -2,6 +2,12 @@ package com.coderbytes.overlappingRanges;
 
 public class OverlappingRanges {
     public static String overlappingRanges(int[] arr) {
+        int greaterMinimum = Math.max(arr[0], arr[2]);
+        int smallerMaximum = Math.min(arr[1], arr[3]);
+        return smallerMaximum - greaterMinimum + 1 < arr[4] ? "false" : "true";
+    }
+
+    public static String overlappingRanges2(int[] arr) {
         int i = arr[0] > arr[2] ? arr[0] : arr[2];
         int overlap = 0;
         while (i <= arr[1] && i <= arr[3]) {
