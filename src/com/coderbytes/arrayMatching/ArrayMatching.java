@@ -1,34 +1,34 @@
 package com.coderbytes.arrayMatching;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArrayMatching {
-    public static String arrayMatching(int[][] arr) {
-        int maxLength = getMaxArrLength(arr);
-        int[] result = new int[maxLength];
-        for (int i = 0; i < maxLength; i++) {
-            for (int[] arr1: arr) {
-                if (arr1.length > i) {
-                    result[i] += arr1[i];
+    public static String arrayMatching(String[] arr) {
+        List<Integer> result = new ArrayList<>();
+        for (String str: arr) {
+            str = str.replaceAll("[^\\d]+", " ").trim();
+            String[] numbers = str.split(" ");
+            for (int i = 0; i < numbers.length; i++) {
+                if (result.size() <= i) {
+                    result.add(0);
+                }
+                if (result.get(i) != null) {
+                    result.set(i, result.get(i) + Integer.parseInt(numbers[i]));
+                }
+                else {
+                    result.set(i, Integer.parseInt(numbers[i]));
                 }
             }
         }
         return encode(result);
     }
 
-    public static int getMaxArrLength(int[][] arr) {
-        int maxLength = 0;
-        for (int[] arr1: arr) {
-            if (arr1.length > maxLength) {
-                maxLength = arr1.length;
-            }
-        }
-        return maxLength;
-    }
-
-    public static String encode(int[] arr) {
-        int length = arr.length;
+    public static String encode(List<Integer> arr) {
+        int length = arr.size();
         StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
-            sb.append(arr[i]);
+            sb.append(arr.get(i));
             if (i < length - 1) {
                 sb.append("-");
             }
@@ -37,15 +37,11 @@ public class ArrayMatching {
     }
 
     public static void main(String[] args) {
-        int[][] arr1 = {
-            {5, 2, 3},
-            {2, 2, 3, 10, 6}
-        };
-        int[][] arr2 = {
-            {1, 2, 1},
-            {2, 1, 5, 2}
-        };
+        String[] arr1 = {"[5, 2, 3]", "[2, 2, 3, 10, 6]"};
+        String[] arr2 = {"[1, 2, 1]", "[2, 1, 5, 2]"};
+        String[] arr3 = {"[1, 2, 5, 6]", "[5, 2, 8, 11]"};
         System.out.println(arrayMatching(arr1));
         System.out.println(arrayMatching(arr2));
+        System.out.println(arrayMatching(arr3));
     }
 }
