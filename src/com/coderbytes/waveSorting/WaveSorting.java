@@ -3,6 +3,11 @@ package com.coderbytes.waveSorting;
 import java.util.HashMap;
 import java.util.Map;
 
+/* 
+    wave sorting is possible if the frequency of the most repeated number
+    is not greater than half the length of the list of numbers
+*/
+
 public class WaveSorting {
     public static String waveSorting(int[] arr) {
         Map<Integer, Integer> arrMap = arrToMap(arr);
