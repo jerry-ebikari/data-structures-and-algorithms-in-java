@@ -1,25 +1,18 @@
 package com.coderbytes.twoSum;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TwoSum {
     public static String twoSum(int[] arr) {
         int target = arr[0];
-        List<String> twos = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[i] + arr[j] == target) {
-                    twos.add(arr[i] + "," + arr[j]);
+                    sb.append(arr[i] + "," + arr[j] + " ");
                 }
             }
         }
-        if (twos.size() == 0) return "-1";
-        StringBuilder sb = new StringBuilder();
-        for (String elem: twos) {
-            sb.append(elem + " ");
-        }
-        return new String(sb);
+        if (sb.length() == 0) return "-1";
+        return new String(sb).trim();
     }
 
     public static void main(String[] args) {
