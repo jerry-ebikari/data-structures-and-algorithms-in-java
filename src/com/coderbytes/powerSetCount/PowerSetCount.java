@@ -2,21 +2,7 @@ package com.coderbytes.powerSetCount;
 
 public class PowerSetCount {
     public static int powerSetCount(int[] arr) {
-        int length = arr.length;
-        int count = 0;
-        for (int i = length; i >= 0; i--) {
-            count += combination(length, i);
-        }
-        return count;
-    }
-
-    public static long factorial(int n) {
-        if (n < 2) return 1;
-        return n * factorial(n - 1);
-    }
-
-    public static long combination(int n, int r) {
-        return factorial(n) / (factorial(r) * factorial(n - r));
+        return (int) Math.pow(2, arr.length);
     }
 
     public static void main(String[] args) {
