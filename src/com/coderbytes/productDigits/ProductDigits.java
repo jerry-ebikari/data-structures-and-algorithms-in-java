@@ -1,30 +1,20 @@
 package com.coderbytes.productDigits;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProductDigits {
     public static int productDigits(int num) {
-        List<Integer> quotients = getQuotients(num);
-        int length = quotients.size();
-        int minDigits = Integer.toString(num).length() + 1;
-        for (int i = 0, j = length - 1; i <= j; i++, j--) {
-            int productLength = (quotients.get(i) + "" + quotients.get(j)).length();
-            if (productLength < minDigits) {
-                minDigits = productLength;
-            }
-        }
-        return minDigits;
-    }
-
-    public static List<Integer> getQuotients(int num) {
-        List<Integer> quotients = new ArrayList<>();
-        for (int i = 1; i <= num; i++) {
+        double maxPossibleQuotient = Math.sqrt(num);
+        int minLength = Integer.toString(num).length() + 1;
+        for (int i = 2; i <= maxPossibleQuotient; i++) {
             if (num % i == 0) {
-                quotients.add(i);
+                int divisor1 = i;
+                int divisor2 = num / i;
+                String divisorsCombined = divisor1 + "" + divisor2;
+                if (minLength > divisorsCombined.length()) {
+                    minLength = divisorsCombined.length();
+                }
             }
         }
-        return quotients;
+        return minLength;
     }
 
     public static void main(String[] args) {
