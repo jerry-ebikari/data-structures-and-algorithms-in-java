@@ -5,20 +5,33 @@ public class PalindromeCreator {
         if (isPalindrome(str)) {
             return "palindrome";
         }
-        for (int i = 0, j = str.length() - 1; i < j; i++, j--) {
-            if (str.charAt(i) != str.charAt(j)) {
-                if (checkPalindromeWithBreakers(str, i, j) == i) {
-                    return str.charAt(i) + "";
-                }
-                else if (checkPalindromeWithBreakers(str, i, j) == j) {
-                    return str.charAt(j) + "";
-                }
-                else if (checkPalindromeWithBreakers(str, i, j) == i + j) {
-                    return str.charAt(i) + "" + str.charAt(j);
+        String shortest = "";
+        boolean found = false;
+        int max = (int) Math.pow(2, str.length());
+        for (int i = 0; i < max; i++) {
+            String binaryString = Integer.toString(i, 2);
+            String elem = getWordFromBinaryString(str, binaryString);
+            if (elem.length() > 2 && (str.length() - elem.length() < 3) && isPalindrome(elem)) {
+                String missingCharacters = getMissingCharacters(str, binaryString);
+                if (missingCharacters.length() < shortest.length() || shortest.length() == 0) {
+                    shortest = missingCharacters;
+                    found = true;
                 }
             }
         }
-        return "not possible";
+        return found ? shortest : "not possible";
+    }
+
+    public static String getWordFromBinaryString(String str, String binaryString) {
+        int padding = str.length() - binaryString.length();
+        binaryString = "0".repeat(padding) + binaryString;
+        String elem = "";
+        for (int i = 0, max = binaryString.length(); i < max; i++) {
+            if (binaryString.charAt(i) == '1') {
+                elem += str.charAt(i) + "";
+            }
+        }
+        return elem;
     }
 
     public static boolean isPalindrome(String str) {
@@ -30,25 +43,16 @@ public class PalindromeCreator {
         return true;
     }
 
-    public static String removeCharAt(String str, int index) {
-        StringBuilder sb = new StringBuilder(str);
-        sb.deleteCharAt(index);
-        return new String(sb);
-    }
-
-    public static int checkPalindromeWithBreakers(String str, int i, int j) {
-        if (isPalindrome(removeCharAt(str, i))) {
-            return i;
+    public static String getMissingCharacters(String str, String binaryString) {
+        String result = "";
+        int padding = str.length() - binaryString.length();
+        binaryString = "0".repeat(padding) + binaryString;
+        for (int i = 0; i < str.length(); i++) {
+            if (binaryString.charAt(i) == '0') {
+                result += str.charAt(i) + "";
+            }
         }
-        if (isPalindrome(removeCharAt(str, j))) {
-            return j;
-        }
-        String str1 = removeCharAt(str, i);
-        str1 = removeCharAt(str1, j - 1);
-        if (isPalindrome(str1)) {
-            return i + j;
-        }
-        return -1;
+        return result;
     }
 
     public static void main(String[] args) {
