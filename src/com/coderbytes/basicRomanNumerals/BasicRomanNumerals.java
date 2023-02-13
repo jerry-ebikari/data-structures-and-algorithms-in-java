@@ -16,39 +16,29 @@ public class BasicRomanNumerals {
     }
 
     public static int romanToInteger(String romanStr) {
+        if (romanStr.length() == 1) {
+            return romanMap.get(romanStr.charAt(0));
+        }
         int result = 0;
-        for (int i = 0; i < romanStr.length(); i++) {
-            char c = romanStr.charAt(i);
-            // If last character is encountered
-            if (romanStr.length() - i < 2) {
-                result += romanMap.get(c);
-                break;
+        int i = 1;
+        while(i < romanStr.length()) {
+            char c = romanStr.charAt(i - 1);
+            char c2 = romanStr.charAt(i);
+            if (i == romanStr.length() - 1 || romanMap.get(c2) >= romanMap.get(romanStr.charAt(i+1))) {
+                result += romanMap.get(c2);
             }
-            char c2 = romanStr.charAt(i + 1);
-
-            // For patterns like IV, IX, XL, XC...
             if (romanMap.get(c) < romanMap.get(c2)) {
-                result += romanMap.get(c2) - romanMap.get(c);
-                i++;
-                continue; 
+                result -=  romanMap.get(c);
             }
-
-            result += romanMap.get(c) + romanMap.get(c2);
+            else if (i == 1) {
+                result += romanMap.get(c);
+            }
             i++;
-            while (i < romanStr.length() - 1) {
-                char c3 = romanStr.charAt(i + 1);
-                if (c2 != c3) {
-                    break;
-                }
-                result += romanMap.get(c3);
-                c2 = c3;
-                i++;
-            }
         }
         return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(romanToInteger("XII"));
+        System.out.println(romanToInteger("XXIV"));
     }
 }
