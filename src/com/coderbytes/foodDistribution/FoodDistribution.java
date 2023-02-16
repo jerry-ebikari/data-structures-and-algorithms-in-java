@@ -13,10 +13,7 @@ public class FoodDistribution {
                 arr[maxIndex]--;
             }
         }
-        // for (int i: arr) {
-        //     System.out.print(i + " ");
-        // }
-        System.out.println();
+        
         int result = 0;
         for (int i = 1; i < arr.length - 1; i++) {
             result += arr[i] - arr[i + 1];
