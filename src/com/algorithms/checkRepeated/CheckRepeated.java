@@ -8,5 +8,7 @@ public class CheckRepeated {
 
     public static void main(String[] args) {
         System.out.println(checkRepeated("jerry"));
+        System.out.println(checkRepeated("corn"));
+        System.out.println(checkRepeated("expertise"));
     }
 }
